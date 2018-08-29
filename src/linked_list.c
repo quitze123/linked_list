@@ -101,6 +101,9 @@ void free_list(node * head)
 	}
 }
 
+/*
+	I addes this comment.
+*/
 int main(void)
 {
 	node * head = NULL;
