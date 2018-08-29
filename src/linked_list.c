@@ -66,16 +66,9 @@ void insert_at_end(node ** head, node ** tail, int value)
 	}
 	else
 	{
+		(*tail)->next = new_node;
+		new_node->prev = (*tail);
 		(*tail) = new_node;
-		 
-		 temp = *head;
-		 while(temp->next != NULL)
-		 {
-			 temp = temp->next;
-		 }
-		 
-		 temp->next = new_node;
-		 new_node->prev = temp;
 	}
 }
 
