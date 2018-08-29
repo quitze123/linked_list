@@ -75,18 +75,15 @@ void insert_at_end(node ** head, node ** tail, int value)
 void print_list(node * head, node * tail, int size)
 {
 	int i = 0;
+	
+	if(head == NULL)
+		return;
+	
 	node * temp = head;
 	while(temp != NULL)
 	{
 		printf("%i\n", temp->data);
 		temp = temp->next;
-	}
-	
-	temp = tail;
-	while(temp != NULL)
-	{
-		printf("%i\n", temp->data);
-		temp = temp->prev;	
 	}
 }
 
@@ -101,15 +98,54 @@ void free_list(node * head)
 	}
 }
 
-/*
-	I addes this comment.
-*/
+void remove_node(node ** head, node ** tail, int value)
+{
+	node * temp = (*head);
+	
+	if(head == NULL)
+		return;
+	if((*head) == NULL)
+		return;
+	
+	while(temp != NULL)
+	{
+		if(temp->data == value)
+		{
+			if(temp->next == NULL && temp->prev == NULL)
+			{
+				free(*head);
+				*head = NULL;
+			}
+			else if(temp->next == NULL)
+			{
+				(*tail) = temp->prev;
+				free(temp);
+				(*tail)->next = NULL;
+			}
+			else if(temp->prev == NULL)
+			{
+				(*head) = temp->next;
+				(*head)->prev = NULL;
+				free(temp);
+			}
+			else
+			{
+				temp->prev->next = temp->next;
+				temp->next->prev = temp->prev;
+				free(temp);
+			}
+			return;
+		}
+		temp = temp->next;
+	}
+}
+
 int main(void)
 {
 	node * head = NULL;
 	node * tail = NULL;
 	
-	int data[10] = {1,45,232,6566,6776,732,1121,11,343,4443};
+	int data[10] = {-67,45,232,6566,6776,732,1121,11,343,4443};
 	int size = 10;
 	int i = 0;
 	
@@ -118,6 +154,11 @@ int main(void)
 		insert_at_end(&head, &tail, data[i]);
 	}
 	
+	print_list(head, tail, size);
+	for(i = 0; i < size; i++)
+	{
+		remove_node(&head, &tail, data[i]);
+	}
 	print_list(head, tail, size);
 	free_list(head);
 	
