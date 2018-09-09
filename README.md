@@ -1,4 +1,4 @@
-<h1>File Reader</h1>
+<h1>File Reader
 
 <h2>
 Example :
@@ -13,20 +13,19 @@ Input : This     is    a string of text, with multiple spaces       .  And
 
 
          lines.
-
-Output: 
-This
-is
-a
-string
-of
-text,
-with
-multiple
-spaces
-.
-And
-multiple
-new
-lines.
 </p>
+*Output: 
+*This
+*is
+*a
+*string
+*of
+*text,
+*with
+*multiple
+*spaces
+*.
+*And
+*multiple
+*new
+*lines.
